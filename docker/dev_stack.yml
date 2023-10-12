@@ -19,16 +19,6 @@ services:
     volumes:
       - /opt/containers/fwda/grafana/data:/var/lib/grafana
 
-  mosquitto:
-    container_name: fwda_mosquitto
-    image: eclipse-mosquitto
-    restart: always
-    ports:
-      - "1883:1883"
-      - "9001:9001"
-    volumes:
-      - /opt/containers/fwda/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
-
   rstudio:
     container_name: fwda_rstudio
     image: rocker/tidyverse
