@@ -39,3 +39,13 @@ docker volume create portainer_data
 
 #install and run
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+
+
+# ---- folders ----#
+
+sudo mkdir /opt/containers/fwda/influxdb/data
+sudo mkdir /opt/containers/fwda/grafana/data
+sudo mkdir /opt/containers/fwda/r-projects
+
+sudo chmod 777 /opt/containers/fwda/grafana/data
