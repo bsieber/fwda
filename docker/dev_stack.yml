@@ -1,0 +1,41 @@
+version: '3'
+services:
+
+  influxdb:
+    container_name: fwda_influxdb
+    image: influxdb:1.8
+    restart: always
+    ports:
+      - "8086:8086"
+    volumes:
+      - /opt/containers/fwda/influxdb/data:/var/lib/influxdb
+
+  grafana:
+    container_name: fwda_grafana
+    image: grafana/grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - /opt/containers/fwda/grafana/data:/var/lib/grafana
+
+  mosquitto:
+    container_name: fwda_mosquitto
+    image: eclipse-mosquitto
+    restart: always
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - /opt/containers/fwda/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  rstudio:
+    container_name: fwda_rstudio
+    image: rocker/tidyverse
+    restart: always
+    environment:
+      DISABLE_AUTH: true
+    ports:
+      -  "8787":"8787"
+    volumes:
+      - /opt/containers/fwda/r-projects:/fwda/r-projects

@@ -3,7 +3,7 @@
 # ---- update the system ---- #
 
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -y
 
 
 
@@ -26,6 +26,10 @@ sudo apt update
 #install Docker
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
+#setup user for Docker management
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
 
 
 # ---- install portainer ---- #
