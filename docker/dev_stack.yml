@@ -14,10 +14,10 @@ services:
     container_name: fwda_grafana
     image: grafana/grafana
     restart: always
-	environment:
-		GF_FEATURE_TOGGLES_ENABLE: "publicDashboards"
-		GF_SECURITY_ADMIN_USER: “admin”
-		GF_SECURITY_ADMIN_PASSWORD: “admin1234”
+    environment:
+	GF_FEATURE_TOGGLES_ENABLE: "publicDashboards"
+	GF_SECURITY_ADMIN_USER: “admin”
+	GF_SECURITY_ADMIN_PASSWORD: “admin1234”
     ports:
       - "3000:3000"
     volumes:
