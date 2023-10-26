@@ -3,21 +3,30 @@ services:
 
   influxdb:
     container_name: fwda_influxdb
-    image: influxdb:1.8
+    image: influxdb
     restart: always
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: fwda
+      DOCKER_INFLUXDB_INIT_PASSWORD: e5Rh2xf26bLjSZ
+      DOCKER_INFLUXDB_INIT_ORG: fwda-org
+      DOCKER_INFLUXDB_INIT_BUCKET: fwda-bucket
+      #DOCKER_INFLUXDB_INIT_RETENTION: 100w
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: 2665b45c-11f0-4ad8-a3d1-59d440b9e0b2
     ports:
       - "8086:8086"
     volumes:
-      - /opt/containers/fwda/influxdb/data:/var/lib/influxdb
+      - /opt/containers/fwda/influxdb2/data:/var/lib/influxdb2
+      - /opt/containers/fwda/influxdb2/config:/etc/influxdb2
 
   grafana:
     container_name: fwda_grafana
     image: grafana/grafana
     restart: always
     environment:
-      GF_FEATURE_TOGGLES_ENABLE: "publicDashboards"
-      GF_SECURITY_ADMIN_USER: “admin”
-      GF_SECURITY_ADMIN_PASSWORD: “admin1234”
+      GF_FEATURE_TOGGLES_ENABLE: publicDashboards
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: e5Rh2xf26bLjSZ
     ports:
       - "3000:3000"
     volumes:
@@ -27,8 +36,8 @@ services:
     container_name: fwda_rstudio
     image: rocker/tidyverse
     restart: always
-    environment:
-      DISABLE_AUTH: true
+    #environment:
+    #  DISABLE_AUTH: true
     ports:
       -  "8787:8787"
     volumes:
